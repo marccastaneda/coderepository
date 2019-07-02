@@ -12,7 +12,7 @@ class LogsParseState(Enum):
 
 
 def perTacho_CalcDeltaPulseCount(newValue, oldValue):
-    result = (0xffff + 1 + newValue - oldValue) % (0xfff + 1);
+    result = (0xffff + 1 + newValue - oldValue) % (0xfff + 1)
     return result
 
 # Process each line, and retrieve the following  fields
@@ -34,7 +34,7 @@ def main():
         tachometerData2_rawPulseCount1 = 0
         prev_cycle = 0
         prev_tachometerData1_rawPulseCount0 = 0
-        prev_tachometerData1_rawPulseCount1 = 0
+        prev_tachometerData1_rawPulseCount1 = 0s
         prev_tachometerData2_rawPulseCount0 = 0
         prev_tachometerData2_rawPulseCount1 = 0
         MAX_DIFF_TACHO_VALUES = 4
@@ -67,6 +67,10 @@ def main():
                     prev_tachometerData2_rawPulseCount1 = tachometerData2_rawPulseCount1
                     parseState = LogsParseState.FIND_NEXT
                 else:
+                    #check tacho 1
+                    deltapulsereplica1 = perTacho_CalcDeltaPulseCount(tachometerData1_rawPulseCount0,
+                                                                      prev_tachometerData1_rawPulseCount0)
+                    deltapulsereplica2
 
             line_count += 1
 
